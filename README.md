@@ -18,6 +18,7 @@ The Job Server is the central intelligence of the GoPine distributed computing s
 - **API Layer**: Provides REST/WebSocket interfaces for system interaction
 
 ## Technical Architecture
+- **Tech Stack**: NestJS + TypeORM + PostgreSQL
 - Scalable server design to handle growing node networks
 - Real-time communication with node agents
 - Integration with Job Schemas for standardized task definitions
