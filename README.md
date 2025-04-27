@@ -1,10 +1,10 @@
-# GoPine Job Server
+# Job Server
 
 ## Overview
-The Job Server is the central intelligence of the GoPine distributed computing system. It orchestrates the workflow of jobs across the network of node agents, managing task distribution, monitoring, and result aggregation.
+The Job Server is the central intelligence of the SpareCore distributed computing system. It orchestrates the workflow of jobs across the network of node agents, managing task distribution, monitoring, and result aggregation.
 
 ## Purpose
-- Acts as the central coordinator for the entire GoPine ecosystem
+- Acts as the central coordinator for the entire SpareCore ecosystem
 - Intelligently distributes computing tasks to available node agents
 - Tracks job progress and handles failure scenarios
 - Provides API endpoints for job submission and result retrieval
@@ -70,9 +70,9 @@ The Job Server is the central intelligence of the GoPine distributed computing s
 4. Update the `.env` file with your local PostgreSQL settings
 5. Create a PostgreSQL database:
    ```sql
-   CREATE DATABASE gopine;
-   CREATE USER gopine WITH ENCRYPTED PASSWORD 'your_password';
-   GRANT ALL PRIVILEGES ON DATABASE gopine TO gopine;
+   CREATE DATABASE sparecore;
+   CREATE USER sparecore WITH ENCRYPTED PASSWORD 'your_password';
+   GRANT ALL PRIVILEGES ON DATABASE sparecore TO sparecore;
    ```
 6. Run database migrations:
    ```bash
@@ -112,8 +112,8 @@ To run the job server as a Windows service:
    ```javascript
    const Service = require('node-windows').Service;
    const svc = new Service({
-     name: 'GoPineJobServer',
-     description: 'GoPine Distributed Computing Job Server',
+     name: 'SpareCoreJobServer',
+     description: 'SpareCore Distributed Computing Job Server',
      script: require('path').join(__dirname, 'dist/main.js')
    });
    svc.on('install', function() {
