@@ -74,8 +74,8 @@ export class NodesService {
     } else {
       // Update existing node
       node.hostname = hostname;
-      node.ipAddress = ip_address;
-      node.version = version;
+      node.ipAddress = ip_address || '';
+      node.version = version || '';
       node.capabilities = capabilities;
       node.resourceInfo = {
         cpuCores: resource_info.cpuCores,

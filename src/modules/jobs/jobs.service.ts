@@ -278,6 +278,9 @@ export class JobsService {
       );
     }
 
+    // Remove from queue if job is in QUEUED state
+    const isQueued = job.status === JobStatus.QUEUED;
+    
     // Update job status
     job.status = JobStatus.CANCELED;
 
@@ -285,7 +288,7 @@ export class JobsService {
     await this.jobRepository.save(job);
 
     // Remove from queue if needed
-    if (job.status === JobStatus.QUEUED) {
+    if (isQueued) {
       await this.queueService.removeJob(id);
     }
 
@@ -340,9 +343,9 @@ export class JobsService {
     if (job.retryCount < job.maxRetries) {
       // Retry the job
       job.status = JobStatus.QUEUED;
-      job.assignedToId = null;
+      job.assignedToId = null as unknown as string;
       job.retryCount += 1;
-      job.startedAt = null;
+      job.startedAt = null as unknown as Date;
       job.progress = 0;
 
       await this.jobRepository.save(job);

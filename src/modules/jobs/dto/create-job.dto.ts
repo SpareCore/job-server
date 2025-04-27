@@ -36,6 +36,7 @@ export class CreateJobDto {
   @ApiProperty({
     description: 'Job-specific parameters',
     type: 'object',
+    additionalProperties: true
   })
   @IsObject()
   @IsNotEmpty()

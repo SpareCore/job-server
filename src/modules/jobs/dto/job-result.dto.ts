@@ -51,6 +51,7 @@ export class JobResultDto {
   @ApiProperty({
     description: 'Job-specific result data',
     type: 'object',
+    additionalProperties: true
   })
   @IsObject()
   @IsOptional()
@@ -59,6 +60,7 @@ export class JobResultDto {
   @ApiProperty({
     description: 'Information about where/how to access the output files',
     type: 'object',
+    additionalProperties: true
   })
   @IsObject()
   @IsOptional()
@@ -76,6 +78,7 @@ export class JobResultDto {
   @ApiProperty({
     description: 'Error information if job status is failed',
     type: 'object',
+    additionalProperties: true
   })
   @IsObject()
   @IsOptional()

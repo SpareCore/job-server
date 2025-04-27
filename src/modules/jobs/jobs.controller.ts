@@ -38,7 +38,7 @@ export class JobsController {
   @ApiOperation({ summary: 'Create a new job' })
   @ApiResponse({ status: 201, description: 'The job has been created successfully.' })
   @ApiResponse({ status: 400, description: 'Invalid request.' })
-  async create(@Body() createJobDto: CreateJobDto, @Req() req) {
+  async create(@Body() createJobDto: CreateJobDto, @Req() req: any) {
     const submittedBy = req.user.id; // From AuthGuard
     return this.jobsService.create(createJobDto, submittedBy);
   }
@@ -62,7 +62,7 @@ export class JobsController {
     @Query('assignedToId') assignedToId?: string,
     @Query('limit') limit?: number,
     @Query('offset') offset?: number,
-    @Req() req?,
+    @Req() req?: any,
   ) {
     // If not admin, only return user's own jobs
     if (!req.user.isAdmin) {
@@ -87,7 +87,7 @@ export class JobsController {
   @ApiResponse({ status: 200, description: 'Return the job.' })
   @ApiResponse({ status: 404, description: 'Job not found.' })
   @ApiParam({ name: 'id', description: 'Job ID' })
-  async findOne(@Param('id', ParseUUIDPipe) id: string, @Req() req) {
+  async findOne(@Param('id', ParseUUIDPipe) id: string, @Req() req: any) {
     const job = await this.jobsService.findOne(id);
     
     // If not admin, check if user is the submitter
@@ -105,7 +105,7 @@ export class JobsController {
   @ApiResponse({ status: 200, description: 'The job has been canceled.' })
   @ApiResponse({ status: 404, description: 'Job not found.' })
   @ApiParam({ name: 'id', description: 'Job ID' })
-  async cancel(@Param('id', ParseUUIDPipe) id: string, @Req() req) {
+  async cancel(@Param('id', ParseUUIDPipe) id: string, @Req() req: any) {
     const job = await this.jobsService.findOne(id);
     
     // If not admin, check if user is the submitter
